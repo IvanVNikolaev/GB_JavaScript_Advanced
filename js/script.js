@@ -1,17 +1,22 @@
-// ЗАГЛУШКА - ДЗ БУДЕТ СДАНО 7 ОКТЯБРЯ
-
-
 const goods = [
-    { title: 'Shirt', price: 150 },
-    { title: 'Socks', price: 50 },
-    { title: 'Jacket', price: 350 },
-    { title: 'Shoes', price: 250 },
+    { title: 'Pulp Fiction', price: 4500 },
+    { title: 'Death Proof', price: 2750 },
+    { title: 'Django Unchained', price: 6900 },
+    { title: 'Kill Bill', price: 3250 },
 ];
-const renderGoodsItem = (title, price) => {
-    return `<div class="goods-item"><h3>${title}</h3><p>${price}</p></div>`;
+
+const renderGoodsItem = (item, img = 'img/no.svg') => {
+    return `<div class="goods-item">
+                <img src="${img}" alt="goods_image">
+                <h3>${item.title}</h3>
+                <p><span>&#36;</span>${item.price}</p>
+                <button class="goods_btn">Add to Cart</button>
+            </div>`;
 };
-const renderGoodsList = (list) => {
-    let goodsList = list.map(item => renderGoodsItem(item.title, item.price));
-    document.querySelector('.goods-list').innerHTML = goodsList.join("");
-}
+
+const renderGoodsList = list => {
+    let goodsList = list.map(item => renderGoodsItem(item));
+    document.querySelector('.goods-list').insertAdjacentHTML('beforeend', goodsList.join(""));
+};
+
 renderGoodsList(goods);
