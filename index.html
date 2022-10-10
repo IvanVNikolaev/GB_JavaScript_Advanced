@@ -1,24 +1,40 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>eShop</title>
+    <script src="https://kit.fontawesome.com/852ab7278a.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/script.js" defer></script>
 </head>
 
-<!-- ЗАГЛУШКА -- ДЗ БУДЕТ СДАНО 7 ОКТЯБРЯ -->
-
 <body>
+    <header class="center">
+        <div class="title">
+            <a href="#" class="logo">
+                <i class="fa-regular fa-paper-plane"></i>eShop
+            </a>
+            <nav>
+                <ul class="menu">
+                    <li class="menu__item"><a href="#" class="menu__link">Hоме</a></li>
+                    <li class="menu__item"><a href="#" class="menu__link">catalog</a></li>
+                    <li class="menu__item"><a href="#" class="menu__link">Stock</a></li>
+                    <li class="menu__item btn-cart"><a href="#" class="menu__link">Cart</a></li>
+                </ul>
+            </nav>
+            <button class="title_btn"><i class="fa-solid fa-cart-shopping"></i>Cart</button>
+            <!-- <div class="title__btn">
+                <a href="cart.html">
+                    <img alt="cart" class="title__cart btn-cart" src="img/cart_black.svg">
+                </a>
+            </div> -->
+        </div>
 
-    <header>
-        <button class="cart-button" type="button">Корзина</button>
     </header>
-
-    <main>
+    <main class="center">
         <div class="goods-list"></div>
     </main>
 
