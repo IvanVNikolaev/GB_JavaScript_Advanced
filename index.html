@@ -8,35 +8,96 @@
     <title>eShop</title>
     <script src="https://kit.fontawesome.com/852ab7278a.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/script.js" defer></script>
 </head>
 
 <body>
-    <header class="center">
-        <div class="title">
-            <a href="#" class="logo">
-                <i class="fa-regular fa-paper-plane"></i>eShop
-            </a>
-            <nav>
-                <ul class="menu">
-                    <li class="menu__item"><a href="#" class="menu__link">Hоме</a></li>
-                    <li class="menu__item"><a href="#" class="menu__link">catalog</a></li>
-                    <li class="menu__item"><a href="#" class="menu__link">Stock</a></li>
-                    <li class="menu__item btn-cart"><a href="#" class="menu__link">Cart</a></li>
-                </ul>
-            </nav>
-            <button class="title_btn"><i class="fa-solid fa-cart-shopping"></i>Cart</button>
-            <!-- <div class="title__btn">
-                <a href="cart.html">
-                    <img alt="cart" class="title__cart btn-cart" src="img/cart_black.svg">
-                </a>
-            </div> -->
-        </div>
 
-    </header>
-    <main class="center">
-        <div class="goods-list"></div>
-    </main>
+    <div id="app">
+
+        <header class="center">
+
+            <div class="title">
+
+                <a href="#" class="logo">
+                    <i class="fa-regular fa-paper-plane"></i>eShop
+                </a>
+
+                <nav>
+                    <ul class="menu">
+                        <li class="menu__item"><a href="#" class="menu__link">Hоме</a></li>
+                        <li class="menu__item"><a href="#" class="menu__link">catalog</a></li>
+                        <li class="menu__item"><a href="#" class="menu__link">Stock</a></li>
+                        <li class="menu__item btn-cart"><a href="#" class="menu__link">Cart</a></li>
+                    </ul>
+                </nav>
+
+                <div class="cart">
+                    <form @submit="filterGoods($event)" action="#" method="post" class="search-form">
+                        <input type="text" class="search-field" v-model="searchLine">
+                        <button class="btn-search" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                    <button class="title_btn" type="button" @click="toggleVisibilityOfTheCart">Cart
+                        ({{cart.length}})</button>
+
+
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <main class="center">
+
+
+            <div class="cart-block" :class="{invisible: !isVisibleCart}">
+
+                <p class="nt" v-if="cart.length === 0">No items in the cart
+                </p>
+
+
+                <div class="cart-item" v-for="el of cart" :key="el.id_product">
+
+
+
+                    <div class="product-bio">
+
+                        <img src="img/no.svg">
+
+                        <p class="product-title">{{el.product_name}}</p>
+                        <p class="product-quantity">{{el.quantity}}</p>
+                        <p class="product-single-price"><span>&#36;</span>{{el.price}}</p>
+
+                        <p class="product-price"><span>&#36;</span>{{el.quantity * el.price}}</p>
+
+                        <button class="del-btn" @click="removeProduct(el)"><i class="fa-solid fa-xmark"></i></button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="goods-list">
+                <div class="goods-item" :class="{invisible: el.isInvisible}" v-for="el of goods" :key="el.id_product">
+                    <img :src="imgCatalog" :alt="el.product_name">
+                    <div class="desc">
+                        <h3>{{el.product_name}}</h3>
+                        <p><span>&#36;</span>{{el.price}}</p>
+                        <button class="goods_btn" @click="addProduct(el)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+    </div>
+
+    <script src="js/script.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 
 </body>
 
